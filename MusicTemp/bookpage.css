@@ -1,0 +1,103 @@
+body{
+	margin: 0px;
+	background-color: #bbdefb;
+}
+
+.top{
+	width: inherit;
+	height: 100px;
+	background-color: #00b8d4;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.6);
+	vertical-align: middle;
+}
+
+.top .navBarOption{
+	font-size: 25px;
+	cursor:pointer;
+	margin-left:20px;
+	vertical-align: middle;
+}
+
+.top .button{
+	width: 100px;
+	height: inherit;
+	background-color: #00b8d4;
+	border: none;
+	color: #ffffff;
+	margin-left: 30px;
+	text-align: center;
+	text-decoration: none;
+	padding: 8px;
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+.top .button:hover{
+	background-color: #0088a3;
+	cursor: pointer;
+	vertical-align: middle;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+}
+
+.top .button:active{
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+	transform: translateY(4px);	
+}
+
+.navBar{
+	height: 100%;
+	width: 0px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0; 
+	background-color: #ffffff;
+	overflow-x: hidden;
+	overflow-y: auto; 
+	transition: 0.5s;  
+}
+
+.navBar ul{
+	width: auto;
+	list-style-type: none;
+	transition: 0.5s;
+	margin-top: 30px;
+}
+
+.navBar li{
+	padding: 5px;
+	font-size: 20px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+
+.navBar li:hover{
+	cursor: pointer;
+	background-color: green;
+	color: #ffffff;
+}
+
+.navBar li:last-child{
+	margin-bottom: 50px;
+}
+
+.navBar img{
+	margin: 10px;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	font-size: 30px;
+	text-decoration: none;
+}
+
+.navBar img:hover{
+	width: 45px;
+	height: 45px;
+}
+
+@media screen and (max-height: 450px){
+	.navBar {padding-top: 15px;}
+	.navBar a{font-size: 20px;}
+}

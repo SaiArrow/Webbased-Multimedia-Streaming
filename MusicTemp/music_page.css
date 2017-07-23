@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette');
+@import url('https://fonts.googleapis.com/css?family=Artifika');
+
+.music_collection{
+	margin-top: 10px;
+	height: 450px;
+	max-height: 450px;
+	box-sizing: border-box;
+	border-radius: 2px;
+	box-shadow: -2px 2px 3px rgba(0,0,0,0.3);
+	vertical-align: middle;
+	background-color: #fff
+}
+
+.heading{
+	width: 150px;
+	padding-left: 10px;
+	font-family: 'Artifika',serif;
+	font-size: 40px; 
+}
+
+.heading:hover{
+	color: #000051;
+	cursor: pointer;
+}

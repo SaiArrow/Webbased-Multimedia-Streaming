@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Books</title>
+		<link rel="stylesheet" type="text/css" href="bookpage.css">
+		<script>
+		function openNav() {
+    		document.getElementById("navBar").style.width = "300px";
+    		//document.getElementById("main").style.marginLeft = "250px";
+		}
+
+		function closeNav() {
+    		document.getElementById("navBar").style.width = "0";
+    		//document.getElementById("main").style.marginLeft= "0";
+		}
+		</script>
+	</head>
+	<body>
+		<div class="top">
+			<span class="navBarOption" onclick="openNav()" alt="Open navigation" title="Open navigation">&#9776;</span>
+			<button class="button" style="margin-left: 800px">Music</button>
+			<button class="button">Movies</button>
+			<button class="button">Books</button>
+		</div>
+		<div id="navBar" class="navBar">
+			<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_arrow_back_48px-512.png" alt="back" class="closebtn" onclick="closeNav()">
+			<ul>
+				<li>Science fiction</li>
+				<li>Drama</li>
+				<li>Action and Adventure</li>
+				<li>Romance</li>
+				<li>Mystery</li>
+				<li>Horror</li>
+				<li>Travel</li>
+				<li>Children's</li>
+				<li>Science</li>
+				<li>History</li>
+				<li>Math</li>
+				<li>Anthology</li>
+				<li>Poetry</li>
+				<li>Encylopedias</li>
+				<li>Dictionaries</li>
+				<li>Comics</li>
+				<li>Art</li>
+				<li>Cookbooks</li>
+				<li>Diaries</li>
+				<li>Autobiographies</li>
+				<li>Fantasy</li>
+				<li>Series</li>
+				<li>Prayer Books</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+body{
+	margin: 0px;
+	background-color: #bbdefb;
+}
+
+.top{
+	background-color: #1976d2;
+	height: 70px;
+	vertical-align: middle;
+	box-style: border-box;
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.3);
+}
+
+.top .openCloseNavBar{
+	width: 60px;
+	height: 60px;
+	font-size:30px;
+	margin: 5px;
+	cursor:pointer;
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 100%;
+}
+
+.top .openCloseNavBar:hover{
+	background-color: #004ba0;
+}
+
+#navBar{
+	height: 100%;
+	width: 200px;
+	margin-top: 70px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	overflow-x: hidden;
+	overflow-y: auto; 
+	transition: 0.5s; 
+	background-color: #03a9f4;
+}
+
+.close{
+	width: 16%;
+	height: 8%;
+	cursor: pointer;
+}
+
+.close img{
+	margin-left: 500%;
+	width: 100%;
+	height: 100%;
+}
+
+.close img:hover{
+	width: 103%;
+	height: 103%;
+	font-family: 
+}
+
+.optionInActive{
+	text-align: center;
+	color: #1b1b1b;
+	font-size: 20px;
+	padding: 8px;
+	font-family: "Bitter","Merriweather",serif;
+	cursor: pointer;
+}
+
+.optionInActive:hover{
+	color: #ffffff;
+	background-color: #004c8c;
+}
+
+.optionActive{
+	text-align: center;
+	font-size: 20px;
+	padding: 8px;
+	font-family: "Bitter","Merriweather",serif;
+	cursor: pointer;
+	background-color: #007ac1;
+	color: #ffffff;	
+}
+
+.section{
+	margin-top: 50px;
+	height: 400px;
+	background-color: #81d4fa;
+	box-style: border-box;
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.3);
+}
+
+
+.card{
+	width: 300px;
+	height: 400px;
+	border-radius: 2px;
+	margin: 10px;
+	display: inline-block;
+	background-color: #fff;
+	box-sizing: border-box;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+}
+
+.card:hover{
+	box-shadow: -2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.card .card_image{
+	width: 100%;
+	height: 80%;
+	border-radius: inherit;
+}
+
+.card .card_image img{
+	width: 100%;
+	height: 100%;
+	border-radius: 2px 2px 0px 0px;
+}
+
+.card_content{
+	width: inherit;
+	max-height: 20%;
+	height: 20%;
+}
+
+.card_content .description{
+	max-height: 100%;
+	max-width: 80%;
+	text-align: center;
+	font-family: 'Merriweather', serif;
+	text-shadow: -3px 3px 4px rgba(0,0,0,0.3);
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.arrows{
+	width: 4%;
+	height: 4%;
+	display: inline-block;
+}
+
+.arrows:hover{
+	width: 4.2%;
+	height: 4.2%;
+}
+
+.arrows img{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}

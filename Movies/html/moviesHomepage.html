@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Movies</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="C:\Users\Admin\Desktop\WebProject\Movies\css\moviesHomepage.css">
+		<script type="text/javascript" src="C:\Users\Admin\Desktop\WebProject\Movies\javascript\moviesHomepage.js"></script>
+		<script src="https://fb.me/react-0.14.3.js"></script>
+		<script src="https://fb.me/react-dom-0.14.3.js"></script>
+		<script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+	</headt>
+	<body>
+		<div id="navBar">
+			<script type="text/babel">
+
+				var NavBarOption = React.createClass({
+					getInitialState:function(){
+						return{active:false}
+					},
+					toggle:function(){
+						this.setState({active: !this.state.active});
+					},
+					activeOption:function(){
+						return(
+							<div>
+								<div className="optionActive" onClick={this.toggle}>{this.props.children}</div>
+								<hr/>
+							</div>
+							);
+					},
+					inactiveOption:function(){
+						return(
+							<div>
+								<div className="optionInActive" onClick={this.toggle} defaultActive={this.state.active}>{this.props.children}</div>
+								<hr/>
+							</div>
+							);
+					},
+					render:function(){
+						if(this.state.active){
+							return(this.activeOption())
+						}
+						else{
+							return(this.inactiveOption())
+						}
+					}
+				});
+
+				var NavBar = React.createClass({
+					getInitialState:function(){
+						return{
+							optionArray:[
+								"Action",
+								"Adventure",
+								"Comedy",
+								"Crime",
+								"Documentary",
+								"Drama",
+								"Fantasy",
+								"Horror",
+								"Mistery",
+								"Romance"
+							]
+						};
+					},
+					render:function(){
+						return(
+									<div className="navBarOption" style={{"paddingTop":"5px"}}>
+										{
+											this.state.optionArray.map(function(optionName,i){
+												return(<NavBarOption key={i} index={i}>{optionName}</NavBarOption>)
+											})
+										}
+									</div>
+								)
+					}
+				});
+
+				ReactDOM.render(<NavBar/>,document.getElementById("navBar"));
+			</script>
+
+		</div>
+
+		<div id="topId" class="top">
+
+			<script type="text/babel">
+
+				var MenuIcon = React.createClass({
+					getInitialState:function(){
+						return{clicked:false}
+					},
+					toggle:function(){
+						this.setState({clicked: !this.state.clicked});
+						if(this.state.clicked){
+							document.getElementById("navBar").style.width = "250px";
+    						document.getElementById("main").style.marginLeft = "250px";
+    						document.getElementById("main").style.transition = "0.5s";
+						}
+						else{
+							document.getElementById("navBar").style.width = "0px";
+    						document.getElementById("main").style.marginLeft = "0px";
+    						document.getElementById("main").style.transition = "0.5s";
+						}
+					},
+					render:function(){
+						return(
+							<div className="openCloseNavBar" title="Menu" align="center" onClick={this.toggle} defaultClicked={this.state.clicked}>
+								<img src="C:\\Users\\Admin\\Desktop\\WebProject\\Movies\\images\\bars.png" alt="menu" style={{"margin":"17px"}}/>
+							</div>
+							);
+					}
+				});
+
+				ReactDOM.render(<MenuIcon/>,document.getElementById("topId"));
+
+			</script>
+
+		</div>
+
+		<div id="main" style="margin-left:200px">
+
+			<div id="sectionId" class="section" style="width:100% ;height:25%; " align=center>
+			</div>
+
+			<script type="text/babel">
+
+					var urls = [
+							"https://cover.djpunjab.com/38823/300x700/Ae-Dil-Hai-Mushkil-Arijit-Singh.jpg",
+							"http://www.lyricsted.com/wp-content/uploads/2016/12/naina-lyrics-dangal-movie-arijit-singh-song.jpg",
+							"https://s-media-cache-ak0.pinimg.com/originals/d6/42/ef/d642ef875d1c2030ede51e81c49e553c.jpg",
+							"http://www.justiceleaguethemovie.com/img/gallery/img01.jpg",
+							"http://d.christianpost.com/full/111449/590-339/a-promotional-photo-of-the-upcoming-movie-transformers-the-last-knight.jpg"
+					];
+
+
+					var BackButton = React.createClass({
+						render:function(){
+							return(
+								<div className="arrows" style={{"verticalAlign" : "650%"}}>
+									<img src={"http://www.sr-electronics.com/images/icon-prev.png"} alt="back"/>
+								</div>);
+						}
+					});
+
+					var NextButton = React.createClass({
+						render:function(){
+							return(
+								<div className="arrows" style={{"verticalAlign" : "650%"}}>
+									<img src={"http://sociales.tv/imagenes/icon-next.png"} alt="next"/>
+								</div>);
+						}
+					});
+
+
+				 	var MovieCard  = React.createClass({
+				 	
+				 		render:function(){
+				 			return(
+				 					<div className="card" style={{"width":"21%" ,"height":"320px"}}>
+										<div className="card_image" style={{"width":"100%" , "height":"80%"}}>
+											<img src={this.props.imageUrl} alt="Movie Image" style={{"width":"100%" , "height":"100%"}}/>
+										</div>
+										<div className="card_content" style={{"width":"100%" , "height":"80%"}}>					
+											<div className="description" style={{"width":"100%" , "height":"80%","fontSize" : "100%"}}>
+												<h3 id="movie_name"><b>{this.props.movieName}</b></h3>
+											</div>
+										</div>
+									</div>
+				 				);
+				 		}
+				 		});
+
+				 	var MovieSection = React.createClass({
+				 		getInitialState:function(){
+				 			return{
+				 				movieNameArray: [
+				 					"Ae Dil Hai Mushkil",
+				 					"Dangal",
+				 					"Spiderman Homecoming",
+				 					"Justice League",
+				 					"Thor Ragnarok"
+				 				]
+				 			}
+				 		},
+				 		render:function(){
+				 			return(
+				 				<div className="movieSection">
+				 					<BackButton/>
+				 					{
+				 						this.state.movieNameArray.map(function(name, i){
+				 							return(<MovieCard key={i} index={i} movieName={name} imageUrl={urls[i]}/>)
+				 						})
+				 					}	
+				 					<NextButton/>
+				 				</div>
+				 				);
+				 		}
+				 	});
+
+					ReactDOM.render(<MovieSection/>,document.getElementById('sectionId'));
+			</script>
+
+		</div>
+	</body>
+</html>
