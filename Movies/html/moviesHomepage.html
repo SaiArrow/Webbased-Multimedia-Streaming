@@ -2,13 +2,16 @@
 <html>
 	<head>
 		<title>Movies</title>
+		<base href="C:\Users\Admin\Desktop\WebProject\Webbased-Multimedia-Streaming\Movies\"></base>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="C:\Users\Admin\Desktop\WebProject\Movies\css\moviesHomepage.css">
-		<script type="text/javascript" src="C:\Users\Admin\Desktop\WebProject\Movies\javascript\moviesHomepage.js"></script>
+		<link rel="stylesheet" type="text/css" href="css\moviesHomepage.css">
+		<script type="text/javascript" src="C:\Users\Admin\Desktop\WebProject\Webbased-Multimedia-Streaming\Movies\javascript\moviesHomepage.js"></script>
 		<script src="https://fb.me/react-0.14.3.js"></script>
 		<script src="https://fb.me/react-dom-0.14.3.js"></script>
 		<script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
-	</headt>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	</head>
 	<body>
 		<div id="navBar">
 			<script type="text/babel">
@@ -78,7 +81,6 @@
 
 				ReactDOM.render(<NavBar/>,document.getElementById("navBar"));
 			</script>
-
 		</div>
 
 		<div id="topId" class="top">
@@ -95,17 +97,19 @@
 							document.getElementById("navBar").style.width = "250px";
     						document.getElementById("main").style.marginLeft = "250px";
     						document.getElementById("main").style.transition = "0.5s";
+    						$(document).find(".card").animate({"left":"+=200px"},"slow");
 						}
 						else{
 							document.getElementById("navBar").style.width = "0px";
     						document.getElementById("main").style.marginLeft = "0px";
     						document.getElementById("main").style.transition = "0.5s";
+    						$(document).find(".card").animate({"left":"+=-200px"},"slow");
 						}
 					},
 					render:function(){
 						return(
 							<div className="openCloseNavBar" title="Menu" align="center" onClick={this.toggle} defaultClicked={this.state.clicked}>
-								<img src="C:\\Users\\Admin\\Desktop\\WebProject\\Movies\\images\\bars.png" alt="menu" style={{"margin":"17px"}}/>
+								<img src="images\\bars.png" alt="menu" style={{"margin":"17px"}}/>
 							</div>
 							);
 					}
@@ -114,12 +118,11 @@
 				ReactDOM.render(<MenuIcon/>,document.getElementById("topId"));
 
 			</script>
-
 		</div>
 
-		<div id="main" style="margin-left:200px">
+		<div id="main" style="margin-left:200px; margin-top:100px">
 
-			<div id="sectionId" class="section" style="width:100% ;height:25%; " align=center>
+			<div id="sectionId" class="section" style="width:100% ;height:415px; " align=center>
 			</div>
 
 			<script type="text/babel">
@@ -129,23 +132,32 @@
 							"http://www.lyricsted.com/wp-content/uploads/2016/12/naina-lyrics-dangal-movie-arijit-singh-song.jpg",
 							"https://s-media-cache-ak0.pinimg.com/originals/d6/42/ef/d642ef875d1c2030ede51e81c49e553c.jpg",
 							"http://www.justiceleaguethemovie.com/img/gallery/img01.jpg",
-							"http://d.christianpost.com/full/111449/590-339/a-promotional-photo-of-the-upcoming-movie-transformers-the-last-knight.jpg"
+							"http://thesource.com/wp-content/uploads/2017/06/00000000Transformers-The-Last-Knight-Poster.jpg",
+							"http://www.cinejosh.com/newsimg/newsmainimg/bahubali-maa-tv-premieres-on-october-25_b_2909150516.jpg",
+							"https://upload.wikimedia.org/wikipedia/en/8/87/Jolly_LLB_2_Cover.jpg",
+							"https://s-media-cache-ak0.pinimg.com/originals/56/32/d0/5632d04e75c90a9dc3ad6610da5a4b61.jpg"
 					];
 
 
 					var BackButton = React.createClass({
+						moveBack:function(){
+							$(document).find(".card").animate({"left":"+=-300px"},"slow");
+						},
 						render:function(){
 							return(
-								<div className="arrows" style={{"verticalAlign" : "650%"}}>
+								<div id="back" className="arrows" onClick={this.moveBack} title="Back" alt="Back">
 									<img src={"http://www.sr-electronics.com/images/icon-prev.png"} alt="back"/>
 								</div>);
 						}
 					});
 
 					var NextButton = React.createClass({
+						moveFoward:function(){
+							$(document).find(".card").animate({"left":"+=300px"},"slow");	
+						},
 						render:function(){
 							return(
-								<div className="arrows" style={{"verticalAlign" : "650%"}}>
+								<div id="next" className="arrows" onClick={this.moveFoward} title="Next" alt="Next">
 									<img src={"http://sociales.tv/imagenes/icon-next.png"} alt="next"/>
 								</div>);
 						}
@@ -153,10 +165,9 @@
 
 
 				 	var MovieCard  = React.createClass({
-				 	
 				 		render:function(){
 				 			return(
-				 					<div className="card" style={{"width":"21%" ,"height":"320px"}}>
+				 					<div className="card" style={{"width":"280px" ,"height":"320px","position":"absolute","left":this.props.index*300+200}}>
 										<div className="card_image" style={{"width":"100%" , "height":"80%"}}>
 											<img src={this.props.imageUrl} alt="Movie Image" style={{"width":"100%" , "height":"100%"}}/>
 										</div>
@@ -167,7 +178,7 @@
 										</div>
 									</div>
 				 				);
-				 		}
+				 			}
 				 		});
 
 				 	var MovieSection = React.createClass({
@@ -178,7 +189,10 @@
 				 					"Dangal",
 				 					"Spiderman Homecoming",
 				 					"Justice League",
-				 					"Thor Ragnarok"
+				 					"Transformers",
+				 					"Bahubali",
+				 					"Jolly LLB 2",
+				 					"Batman Vs Superman"
 				 				]
 				 			}
 				 		},
@@ -186,20 +200,27 @@
 				 			return(
 				 				<div className="movieSection">
 				 					<BackButton/>
+				 					<NextButton/>
 				 					{
 				 						this.state.movieNameArray.map(function(name, i){
-				 							return(<MovieCard key={i} index={i} movieName={name} imageUrl={urls[i]}/>)
+				 							return(<MovieCard key={i} refs="movieCard" index={i} movieName={name} imageUrl={urls[i]}/>)
 				 						})
 				 					}	
-				 					<NextButton/>
 				 				</div>
 				 				);
 				 		}
 				 	});
 
 					ReactDOM.render(<MovieSection/>,document.getElementById('sectionId'));
-			</script>
 
+					//Function for automatic slide in 2sec
+					$(window).on("load",function(){
+							var timer = setInterval(function(){
+								$(".card").animate({"left":"+=-300px"},"slow");
+							},2000);
+					});
+			</script>
 		</div>
+
 	</body>
 </html>
