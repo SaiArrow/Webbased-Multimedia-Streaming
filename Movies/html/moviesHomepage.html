@@ -103,7 +103,7 @@
 							document.getElementById("navBar").style.width = "0px";
     						document.getElementById("main").style.marginLeft = "0px";
     						document.getElementById("main").style.transition = "0.5s";
-    						$(document).find(".card").animate({"left":"+=-200px"},"slow");
+    						$(document).find(".card").animate({"left":"-=200px"},"slow");
 						}
 					},
 					render:function(){
@@ -138,10 +138,19 @@
 							"https://s-media-cache-ak0.pinimg.com/originals/56/32/d0/5632d04e75c90a9dc3ad6610da5a4b61.jpg"
 					];
 
+					var timer,timeout;
+
 
 					var BackButton = React.createClass({
 						moveBack:function(){
-							$(document).find(".card").animate({"left":"+=-300px"},"slow");
+							clearInterval(timer);
+							$(document).find(".card").animate({"left":"-=1200px"},"slow");
+							timeout = setTimeout(function(){
+								clearTimeout(timeout);
+								timer = setInterval(function(){
+									$(".card").animate({"left":"+=-300px"},"slow");
+								},2000);	
+							},5000);
 						},
 						render:function(){
 							return(
@@ -153,7 +162,14 @@
 
 					var NextButton = React.createClass({
 						moveFoward:function(){
-							$(document).find(".card").animate({"left":"+=300px"},"slow");	
+							clearInterval(timer);
+							$(document).find(".card").animate({"left":"+=1200px"},"slow");
+							timeout = setTimeout(function(){
+								clearTimeout(timeout);
+								timer = setInterval(function(){
+									$(".card").animate({"left":"+=-300px"},"slow");
+								},2000);	
+							},5000);	
 						},
 						render:function(){
 							return(
@@ -215,7 +231,7 @@
 
 					//Function for automatic slide in 2sec
 					$(window).on("load",function(){
-							var timer = setInterval(function(){
+							timer = setInterval(function(){
 								$(".card").animate({"left":"+=-300px"},"slow");
 							},2000);
 					});
