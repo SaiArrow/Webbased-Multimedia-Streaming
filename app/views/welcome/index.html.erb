@@ -1,0 +1,19 @@
+<div id="background">
+	<header class="cf">
+		<div class="wrapper_wide">
+			<a href="#" id="logo">MusicFlix</a>
+			<nav>
+				<ul>
+					<li><%= link_to "Explore", musics_path %></li>
+					<li><%= link_to "Sign In", new_music_session_path %></li>
+					<li><%= link_to "Upload Music", new_music_registration_path %></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="wrapper_skinny">
+		<h1>Discover your new favorite<br> Music, or create your own.</h1>
+		<%= link_to "Upload Music", new_music_registration_path, class: "button button_highlight" %>
+		<%= link_to "Explore", musics_path, class: "button button_white" %>
+	</div>
+</div>

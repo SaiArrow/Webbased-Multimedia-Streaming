@@ -1,0 +1,46 @@
+<%= render 'layouts/header'; %>
+
+<div id="podcast_show">
+  <div id="show_banner">
+    <div class="wrapper_skinny">
+      <h1>The Flash Music Dashboard</h1>
+    </div>
+  </div>
+
+  <div id="links">
+    <div class="wrapper_skinny">
+      <ul>
+        <li class="current">Episodes</li>
+        <li><%= link_to "New Episode", new_music_episode_path(@music) %></li>
+        <li><%= link_to "Account Settings", edit_music_registration_path %></li>
+        <li><%= link_to "View Albums", music_path(current_music) %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="episodes">
+    <div class="wrapper_skinny">
+      <ul class="cf">
+        <% @episodes.each do |episode| %>
+          <li class="cf">
+            <div class="episode_thumbnail">
+              <a href="episode.html">
+                <%= image_tag episode.episode_thumbnail.url(:medium) %>
+              </a>
+            </div>
+            <div class="episode_overview">
+              <h2><%= link_to episode.title, music_episode_path(@music, episode) %></h2>
+              <p class="description"><%= truncate(episode.description, lenght: 160) %></p>
+              <div class="authorized_links">
+                <%= link_to "Edit", edit_music_episode_path(@music, episode) %>
+                <%= link_to "Delete", music_episode_path(@music, episode), method: :delete, data: {confirm: "Are you sure?"} %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%= will_paginate @episodes, previous_label: "Previous", next_label: "Next" %>
