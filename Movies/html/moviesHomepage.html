@@ -5,7 +5,7 @@
 		<base href="C:\Users\Admin\Desktop\WebProject\Webbased-Multimedia-Streaming\Movies\"></base>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css\moviesHomepage.css">
-		<script type="text/javascript" src="C:\Users\Admin\Desktop\WebProject\Webbased-Multimedia-Streaming\Movies\javascript\moviesHomepage.js"></script>
+		<script type="text/javascript" src="javascript\moviesHomepage.js"></script>
 		<script src="https://fb.me/react-0.14.3.js"></script>
 		<script src="https://fb.me/react-dom-0.14.3.js"></script>
 		<script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
@@ -169,7 +169,7 @@
 								timer = setInterval(function(){
 									$(".card").animate({"left":"+=-300px"},"slow");
 								},2000);	
-							},5000);	
+							},5000);
 						},
 						render:function(){
 							return(
@@ -235,6 +235,17 @@
 								$(".card").animate({"left":"+=-300px"},"slow");
 							},2000);
 					});
+
+					$("#sectionId")
+						.mouseover(function(){
+							clearInterval(timer);
+							clearTimeout(timeout);
+						})
+						.mouseout(function(){
+							timer = setInterval(function(){
+								$(".card").animate({"left":"+=-300px"},"slow");
+							},2000);	
+						});
 			</script>
 		</div>
 

@@ -1,0 +1,9 @@
+{% if movieList %}
+	<ul>
+		{% for movie in movieList %}
+			<li><a href="{% url 'movies:results' movie.id%}">{{ movie.movieName }}</a></li>
+		{% endfor%}
+	</ul>
+{% else %}
+	<p>No movies are present</p>
+{% endif %}
