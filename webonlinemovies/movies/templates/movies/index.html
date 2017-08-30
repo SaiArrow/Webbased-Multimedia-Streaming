@@ -1,9 +1,47 @@
-{% if movieList %}
-	<ul>
-		{% for movie in movieList %}
-			<li><a href="{% url 'movies:results' movie.id%}">{{ movie.movieName }}</a></li>
-		{% endfor%}
-	</ul>
-{% else %}
-	<p>No movies are present</p>
-{% endif %}
+{% extends 'movies/header.html' %}
+
+{% block title %}Movies{% endblock %}
+
+{% block styleSheets %}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/singleMovieCard.css' %}">
+{% endblock %}
+
+{% block body %}
+  
+  {% if movieList %}
+    <!-- <ul> -->
+      {% for movie in movieList %}
+        <a class="card-link" href="{% url 'movies:detail' movie.id%}">
+            
+        	   <div class="container-fluid card col-xs-12 col-md-3">
+        		  <div class="card_image row-md-6">
+            		  <img class="img-responsive" src="{{movie.imageURL}}" alt="MovieImage">
+        		  </div>
+        		  <div class="card_content row-md-6">
+            		  <div class="description">
+                		  <h3>{{movie.movieName}}</h3>
+                		  <h4>{{movie.production}}</h4>
+                		  <div class="extra">
+                    		  <span>{{movie.views}}views</span>
+                    		  <span>
+                    			 <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
+                    			 {{movie.likes}}
+                    		  </span>
+                    		  <span>
+                    			 <img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
+                    			 {{movie.dislikes}}
+                    		  </span>
+                		  </div>
+            		  </div>
+        		  </div>
+    		  </div>
+            
+		</a>
+      {% endfor%}
+    <!-- </ul> -->
+  {% else %}
+    <p>No movies are present</p>
+  {% endif %}
+
+{% endblock %}

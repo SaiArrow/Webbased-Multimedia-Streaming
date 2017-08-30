@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sidebar</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Parisienne|Sedgwick+Ave" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- {% block styleSheets %}{% endblock %} -->
+    <link rel="stylesheet" type="text/css" href="C:\Users\Admin\Desktop\WebProject\Webbased-Multimedia-Streaming\webonlinemovies\movies\static\movies\css\sidebar.css">
+  </head>
+  
+  <body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Account</a></li>
+            </ul>
+        </div>
+
+        <!-- MainContent -->
+        <div id="page-wrapper">
+            <div class="conatiner-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#" class="btn btn-success" id="menu-toggle">Toggle Menu</a>
+                        <h1>Side Bar 1</h1>
+                        <h1>Side Bar 2</h1>
+                        <h1>Side Bar 3</h1>
+                        <h1>Side Bar 4</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('#menu-toggle').click(function(e){
+            console.log("cdsc");
+            e.preventDefault();
+            $('#wrapper').toggleClass('menuDisplayed');
+        });
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,56 @@
+body{
+	background-color: #bbdefb;
+	margin: 0;
+	padding-top:70px;
+}
+
+#menuButton{
+	width: 60px;
+	height: 60px;
+	margin: 0 15px 0 0;
+	cursor:pointer;
+	display: inline-block;
+	border-radius: 100%;
+}
+
+#menuButton:hover{
+	background-color: #004ba0;
+}
+
+#menuButton img{
+	margin: 18px;
+}
+
+.navbar{
+	background: #1976d2;
+	border-radius: 0;
+	color: white;
+}
+
+.navbar-header .navbar-toggle .icon-bar{
+	background-color: #fff;
+}
+
+.navbar-brand{
+	font-family: "Parisienne",cursive;
+}
+
+.navbar-brand span{
+	color: #fff;
+	font-size: 30px;
+}
+
+#topNavBar .nav ul{
+	background-color: #1976d2;
+}
+
+#topNavBar .dropdown li a{
+	background-color: #1976d2;
+	color: #fff;
+	font-family: "Sedgwick+Ave",serif
+}
+
+#topNavBar .dropdown li a:hover{
+	background: #004c8c;
+	color: #fff;
+}

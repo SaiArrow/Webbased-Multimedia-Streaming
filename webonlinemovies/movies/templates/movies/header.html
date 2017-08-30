@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}Movies{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Parisienne|Sedgwick+Ave" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'movies\movies_css\homepage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'movies\movies_css\sidebar.css' %}">
+    {% block styleSheets %}{% endblock %}
+  </head>
+  
+  <body>
+      <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+
+          <div class="navbar-left" id="menuButton">
+              <div class="">
+                <img src="{%static 'movies/images/bars.png'%}">
+              </div>
+          </div>
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topNavBar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="{% url 'movies:index'%}">
+              <span>
+                <img src="{% static 'movies/images/Movie-Club-logo.png'%}" width="30" height="30" style="display:block-inline" alt="logo">
+                Movies
+              </span>
+            </a>
+          </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="topNavBar"> 
+            
+              <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="query" value="">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <img src="http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" width="30" height="30" alt="Profile">
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">My Profile</a></li>
+                      <li><a href="#">SignIn</a></li>
+                      <li><a href="#">Login</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true">&nbsp;Logout</span></a></li>
+                    </ul>
+                </li>
+              </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+      <!-- Sidebar -->
+      <div class="sidebar" id="sideNavBar">
+        <div></div><hr/>
+        <div class="option">Action</div><hr/>
+        <div class="option">Adventure</div><hr/>
+        <div class="option">Comedy</div><hr/>
+        <div class="option">Crime</div><hr/>
+        <div class="option">Documentary</div><hr/>
+        <div class="option">Drama</div><hr/>
+        <div class="option">Fantasy</div><hr/>
+        <div class="option">Mistery</div><hr/>
+        <div class="option">Romance</div><hr/>
+      </div>
+
+      <script type="text/javascript">
+
+        // Hide the Sidebar if the screen size is less than 480
+        $(window).load(function(){
+          if($(window).width() <= 480){
+            $('#sideNavBar').css({'padding-top':'61px'});
+            $('#sideNavBar').hide();
+            $('#mainContent').css({'margin-left':'0px'});
+          }
+        });
+
+        // Toggle the sidebar
+        $('#menuButton').on('click',function(){
+          if($('#sideNavBar').is(':visible')){
+            $('#sideNavBar').animate({'width':'0px'},'slow',function(){
+              $('#sideNavBar').hide();
+            });
+            if($(window).width() > 480){
+              $('#mainContent').animate({'margin-left':'0px'},'slow');
+            }
+          }
+          else{
+              $('#sideNavBar').show();
+              $('#sideNavBar').animate({'width':'200px'},'slow');
+              
+              if($(window).width() > 480){
+                $('#mainContent').animate({'margin-left':'200px'},'slow');
+              }
+          }
+        });
+      </script>
+
+      <div id="mainContent" style="margin-left:200px">
+        {% block body %}
+        {% endblock %}
+      </div>
+  </body>
+
+</html>
