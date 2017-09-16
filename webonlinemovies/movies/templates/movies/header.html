@@ -78,19 +78,89 @@
       <!-- Sidebar -->
       <div class="sidebar" id="sideNavBar">
         <div></div><hr/>
-        <div class="option" id="all">All</div><hr/>
-        <div class="option" id="action">Action</div><hr/>
-        <div class="option" id="adventure">Adventure</div><hr/>
-        <div class="option" id="comedy">Comedy</div><hr/>
-        <div class="option" id="crime">Crime</div><hr/>
-        <div class="option" id="documentary">Documentary</div><hr/>
-        <div class="option" id="drama">Drama</div><hr/>
-        <div class="option" id="family">Family</div><hr/>
-        <div class="option" id="fantasy">Fantasy</div><hr/>
-        <div class="option" id="horror">Horror</div><hr/>
-        <div class="option" id="mistery">Mistery</div><hr/>
-        <div class="option" id="romance">Romance</div><hr/>
-        <div class="option" id="thriller">Thriller</div><hr/>
+      <form action="{% url 'movies:index' %}" method="get">
+        <button type="submit">GO</button><hr/>
+        <ul class="list">
+          <li>
+            <label for="allCheckbox">
+              <input type="checkbox" name="choice" id="allCheckbox" value="all" checked="true">
+              <div class="option" id="all">All</div>
+              </label><hr/>
+          </li>
+          <li>
+            <label for="actionCheckbox">
+              <input type="checkbox" name="choice" id="actionCheckbox" value="action">
+              <div class="option" id="action">Action</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="adventureCheckbox">
+              <input type="checkbox" name="choice" id="adventureCheckbox" value="adventure">
+              <div class="option" id="adventure">Adventure</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="comedyCheckbox">
+              <input type="checkbox" name="choice" id="comedyCheckbox" value="comedy">
+              <div class="option" id="comedy">Comedy</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="crimeCheckbox">
+              <input type="checkbox" name="choice" id="crimeCheckbox" value="crime">
+              <div class="option" id="crime">Crime</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="documentaryCheckbox">
+              <input type="checkbox" name="choice" id="documentaryCheckbox" value="documentary">
+              <div class="option" id="documentary">Documentary</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="dramaCheckbox">
+              <input type="checkbox" name="choice" id="dramaCheckbox" value="drama">
+              <div class="option" id="drama">Drama</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="familyCheckbox">
+              <input type="checkbox" name="choice" id="familyCheckbox" value="family">
+              <div class="option" id="family">Family</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="fantasyCheckbox">
+              <input type="checkbox" name="choice" id="fantasyCheckbox" value="fantasy">
+              <div class="option" id="fantasy">Fantasy</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="horrorCheckbox">
+              <input type="checkbox" name="choice" id="horrorCheckbox" value="horror">
+              <div class="option" id="horror">Horror</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="misteryCheckbox">
+              <input type="checkbox" name="choice" id="misteryCheckbox" value="mistery">
+              <div class="option" id="mistery">Mistery</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="romanceCheckbox">
+              <input type="checkbox" name="choice" id="romanceCheckbox" value="romance">
+              <div class="option" id="romance">Romance</div>
+            </label><hr/>
+          </li>
+          <li>
+            <label for="thrillerCheckbox">
+              <input type="checkbox" name="choice" id="thrillerCheckbox" value="thriller">
+              <div class="option" id="thriller">Thriller</div>
+            </label><hr/>
+          </li>
+        </ul>
+      </form>
       </div>
 
       <div id="mainContent" style="margin-left:200px;margin-top:61px">
@@ -101,20 +171,7 @@
 <!-- JavaScript and JQuery -->
 <div>
 <script type="text/javascript">
-          var allClicked = true;
-          var actionClicked = false;
-          var adventureClicked = false;
-          var comedyClicked = false;
-          var crimeClicked = false;
-          var documentaryClicked = false;
-          var dramaClicked = false;
-          var familyClicked = false;
-          var fantasyClicked = false;
-          var horrorClicked = false;
-          var misteryClicked = false;
-          var romanceClicked = false;
-          var thrillerClicked = false;
-
+          
         // Hide the Sidebar if the screen size is less than 480
         $(window).load(function(){
           if($(window).width() <= 480){
@@ -123,12 +180,10 @@
             $('#mainContent').css({'margin-left':'0px'});
           }
 
-          if(allClicked === true){
-            allClicked = false;
+          if($('#allCheckbox').attr('checked') === 'checked'){
             $('#all').css({'background-color':'#01579b','color':'#fff'});
           }
           else{
-            allClicked = true;
             $('#all').css({'background-color':'#03a9f4','color':'#000'});
           }
         });
@@ -158,21 +213,21 @@
             $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(allClicked){
-              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            if($('#allCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
             }
         })
 
         $('#action').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(actionClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#actionCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -181,11 +236,11 @@
 
         $('#adventure').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(adventureClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#adventureCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -194,11 +249,11 @@
 
         $('#comedy').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(comedyClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#comedyCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -207,11 +262,11 @@
 
         $('#crime').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(crimeClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#crimeCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -220,11 +275,11 @@
 
         $('#documentary').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(documentaryClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#documentaryCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -233,24 +288,24 @@
 
         $('#drama').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(dramaClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#dramaCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
             }
-        })        
+        })
 
         $('#family').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(familyClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#familyCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -259,11 +314,11 @@
 
         $('#fantasy').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(fantasyClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#fantasyCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -272,11 +327,11 @@
 
         $('#horror').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(horrorClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#horrorCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -285,11 +340,11 @@
 
         $('#mistery').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(misteryClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#misteryCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -298,11 +353,11 @@
 
         $('#romance').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(romanceClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#romanceCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
@@ -311,140 +366,140 @@
 
         $('#thriller').hover(
           function(){ //inhover
-            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
           },
           function(){ //outhover
-            if(thrillerClicked){
-              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            if($('#thrillerCheckbox').attr('checked') === 'checked'){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
             }
             else{
               $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
             }
         })
 
-        $('#all').on('click',function(){
-          if(allClicked){
-            allClicked = false;
+        $('#allCheckbox').on('click',function(){
+          if($('#allCheckbox').attr('checked') === 'checked'){
+            $('#allCheckbox').attr('checked',false)
           }
           else{
-            allClicked = true;
+            $('#allCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#action').on('click',function(){
-          if(actionClicked){
-            actionClicked = false;
+        $('#actionCheckbox').on('click',function(){
+          if($('#actionCheckbox').attr('checked') === 'checked'){
+            $('#actionCheckbox').attr('checked',false)
           }
           else{
-            actionClicked = true;
+            $('#actionCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#adventure').on('click',function(){
-          if(adventureClicked){
-            adventureClicked = false;
+        $('#adventureCheckbox').on('click',function(){
+          if($('#adventureCheckbox').attr('checked') === 'checked'){
+            $('#adventureCheckbox').attr('checked',false)
           }
           else{
-            adventureClicked = true;
+            $('#adventureCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#comedy').on('click',function(){
-          if(comedyClicked){
-            comedyClicked = false;
+        $('#comedyCheckbox').on('click',function(){
+          if($('#comedyCheckbox').attr('checked') === 'checked'){
+            $('#comedyCheckbox').attr('checked',false)
           }
           else{
-            comedyClicked = true;
+            $('#comedyCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#crime').on('click',function(){
-          if(crimeClicked){
-            crimeClicked = false;
+        $('#crimeCheckbox').on('click',function(){
+          if($('#crimeCheckbox').attr('checked') === 'checked'){
+            $('#crimeCheckbox').attr('checked',false)
           }
           else{
-            crimeClicked = true;
+            $('#crimeCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#documentary').on('click',function(){
-          if(documentaryClicked){
-            documentaryClicked = false;
+        $('#documentaryCheckbox').on('click',function(){
+          if($('#documentaryCheckbox').attr('checked') === 'checked'){
+            $('#documentaryCheckbox').attr('checked',false)
           }
           else{
-            documentaryClicked = true;
+            $('#documentaryCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#drama').on('click',function(){
-          if(dramaClicked){
-            dramaClicked = false;
+        $('#dramaCheckbox').on('click',function(){
+          if($('#dramaCheckbox').attr('checked') === 'checked'){
+            $('#dramaCheckbox').attr('checked',false)
           }
           else{
-            dramaClicked = true;
+            $('#dramaCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#family').on('click',function(){
-          if(familyClicked){
-            familyClicked = false;
+        $('#familyCheckbox').on('click',function(){
+          if($('#familyCheckbox').attr('checked') === 'checked'){
+            $('#familyCheckbox').attr('checked',false)
           }
           else{
-            familyClicked = true;
+            $('#familyCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#fantasy').on('click',function(){
-          if(fantasyClicked){
-            fantasyClicked = false;
+        $('#fantasyCheckbox').on('click',function(){
+          if($('#fantasyCheckbox').attr('checked') === 'checked'){
+            $('#fantasyCheckbox').attr('checked',false)
           }
           else{
-            fantasyClicked = true;
+            $('#fantasyCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#horror').on('click',function(){
-          if(horrorClicked){
-            horrorClicked = false;
+        $('#horrorCheckbox').on('click',function(){
+          if($('#horrorCheckbox').attr('checked') === 'checked'){
+            $('#horrorCheckbox').attr('checked',false)
           }
           else{
-            horrorClicked = true;
+            $('#horrorCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#mistery').on('click',function(){
-          if(misteryClicked){
-            misteryClicked = false;
+        $('#misteryCheckbox').on('click',function(){
+          if($('#misteryCheckbox').attr('checked') === 'checked'){
+            $('#misteryCheckbox').attr('checked',false)
           }
           else{
-            misteryClicked = true;
+            $('#misteryCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#romance').on('click',function(){
-          if(romanceClicked){
-            romanceClicked = false;
+        $('#romanceCheckbox').on('click',function(){
+          if($('#romanceCheckbox').attr('checked') === 'checked'){
+            $('#romanceCheckbox').attr('checked',false)
           }
           else{
-            romanceClicked = true;
+            $('#romanceCheckbox').attr('checked',true)
           }
-        });
+        })
 
-        $('#thriller').on('click',function(){
-          if(thrillerClicked){
-            thrillerClicked = false;
+        $('#thrillerCheckbox').on('click',function(){
+          if($('#thrillerCheckbox').attr('checked') === 'checked'){
+            $('#thrillerCheckbox').attr('checked',false)
           }
           else{
-            thrillerClicked = true;
+            $('#thrillerCheckbox').attr('checked',true)
           }
-        });
+        })
 
       </script>
 </div>
 
 <!-- Header navigation CSS-->
-      <div>
-        <style type="text/css">
+<div>
+<style type="text/css">
 body{
   background-color: #bbdefb;
 }
@@ -508,6 +563,26 @@ body{
   @import url('https://fonts.googleapis.com/css?family=Merriweather');
 @import url('https://fonts.googleapis.com/css?family=Bitter');
 
+.list{
+  padding: 0px;
+  list-style-type: none;
+}
+
+.list li{
+  list-style-type: none;
+}
+
+.list li label{
+  width: 200px;
+  margin: 0px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.list input{
+  display: none;
+}
+
 .sidebar{
   height: 100%;
   width: 200px;
@@ -527,18 +602,6 @@ body{
   color: #1b1b1b;
   font-size: 20px;
   padding: 8px;
-  font-family: "Bitter","Merriweather",serif;
-  cursor: pointer;
-}
-
-.option input{
-  display: none;
-}
-
-.optionLabel{
-  text-align: center;
-  color: #1b1b1b;
-  font-size: 20px;
   font-family: "Bitter","Merriweather",serif;
   cursor: pointer;
 }
