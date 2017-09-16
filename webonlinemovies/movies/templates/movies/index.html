@@ -2,44 +2,160 @@
 
 {% block title %}Movies{% endblock %}
 
-{% block styleSheets %}
-	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/singleMovieCard.css' %}">
-{% endblock %}
-
 {% block body %}
   
-  {% if movieList %}
-    <!-- <ul> -->
-      {% for movie in movieList %}
+  {% if movies %}
+    <div class="section">
+      
+      {% for movie in movies %}
         <a class="card-link" href="{% url 'movies:detail' movie.id%}">
-            
-        	   <div class="container-fluid card col-xs-12 col-md-3">
-        		  <div class="card_image row-md-6">
-            		  <img class="img-responsive" src="{{movie.imageURL}}" alt="MovieImage">
-        		  </div>
-        		  <div class="card_content row-md-6">
-            		  <div class="description">
-                		  <h3>{{movie.movieName}}</h3>
-                		  <h4>{{movie.production}}</h4>
-                		  <div class="extra">
-                    		  <span>{{movie.views}}views</span>
-                    		  <span>
-                    			 <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
-                    			 {{movie.likes}}
-                    		  </span>
-                    		  <span>
-                    			 <img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
-                    			 {{movie.dislikes}}
-                    		  </span>
-                		  </div>
-            		  </div>
-        		  </div>
-    		  </div>
-            
-		</a>
+
+        	<div class="card">
+            <div class="card_image">
+              <img src="{{movie.imageURL}}" alt="MovieImage">
+            </div>
+            <div class="card_content row-md-6">
+              <div class="description">
+                <h3>{{movie.movieName}}</h3>
+                <h4>{{movie.production}}</h4>
+                <div class="extra">
+                    <span>{{movie.views}}views</span>
+                    <span>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
+                        {{movie.likes}}
+                    </span>
+                    <span>
+                        <img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
+                        {{movie.dislikes}}
+                    </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+		    </a>
       {% endfor%}
-    <!-- </ul> -->
+
+    {% if movies.has_other_pages %}
+    <div align="center">
+      <ul class="pagination">
+        {% if movies.has_previous %}
+          <li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+      
+        {% for i in movies.paginator.page_range %}
+          {% if movies.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+    
+        {% if movies.has_next %}
+          <li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+
+  </div>
+
+  <div>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans');
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display');
+
+.section{
+  margin-top: 61px;
+  margin-left: 5%;
+  padding: 0px;
+}
+
+.card-link{
+  color: #000;
+}
+
+.card-link:hover{
+  color: #000;
+}
+
+.card-link:active{
+  color: #000;
+}
+
+.card{
+  width: 250px;
+  height: 350px;
+  margin: 4px;
+  display: inline-block;
+  background-color: #fff;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+}
+
+.card:hover{
+  box-shadow: -2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.card .card_image{
+  height: inherit;
+  max-height: 75%;
+  display: inline-block;
+  padding: 3px;
+  border-radius: inherit;
+}
+
+.card .card_image img{
+  width: 100%;
+  height: 100%;
+  border-radius: 2px 2px 0px 0px;
+}
+
+.card_content{
+  padding: 5px;
+}
+.card_content .description{
+  max-width: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card_content .description h3{
+  margin: 0px;
+  font-family: "Droid Serif",serif;
+  font-weight: bolder;
+  font-size: 17px;
+}
+
+.card_content .description h4{
+  margin-top: 4px;
+  font-family: "Droid Serif",serif;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.extra span{
+  font-size: 13px;
+}
+
+.card_content .description .extra span img{
+  width: auto;
+  height: 15px;
+  margin-left: 5px;
+}
+</style>
+</div>
+
   {% else %}
     <p>No movies are present</p>
   {% endif %}

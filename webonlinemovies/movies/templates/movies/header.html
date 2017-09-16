@@ -8,17 +8,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'movies\movies_css\homepage.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'movies\movies_css\sidebar.css' %}">
+    
     {% block styleSheets %}{% endblock %}
   </head>
   
@@ -53,9 +49,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="topNavBar"> 
             
-              <form class="navbar-form navbar-left" role="search" method="get" action="#">
+              <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'movies:results' %}">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="query" value="">
+                    <input type="text" class="form-control" placeholder="Search" name="search" value="" required="true">
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
               </form>
@@ -82,25 +78,58 @@
       <!-- Sidebar -->
       <div class="sidebar" id="sideNavBar">
         <div></div><hr/>
-        <div class="option">Action</div><hr/>
-        <div class="option">Adventure</div><hr/>
-        <div class="option">Comedy</div><hr/>
-        <div class="option">Crime</div><hr/>
-        <div class="option">Documentary</div><hr/>
-        <div class="option">Drama</div><hr/>
-        <div class="option">Fantasy</div><hr/>
-        <div class="option">Mistery</div><hr/>
-        <div class="option">Romance</div><hr/>
+        <div class="option" id="all">All</div><hr/>
+        <div class="option" id="action">Action</div><hr/>
+        <div class="option" id="adventure">Adventure</div><hr/>
+        <div class="option" id="comedy">Comedy</div><hr/>
+        <div class="option" id="crime">Crime</div><hr/>
+        <div class="option" id="documentary">Documentary</div><hr/>
+        <div class="option" id="drama">Drama</div><hr/>
+        <div class="option" id="family">Family</div><hr/>
+        <div class="option" id="fantasy">Fantasy</div><hr/>
+        <div class="option" id="horror">Horror</div><hr/>
+        <div class="option" id="mistery">Mistery</div><hr/>
+        <div class="option" id="romance">Romance</div><hr/>
+        <div class="option" id="thriller">Thriller</div><hr/>
       </div>
 
-      <script type="text/javascript">
+      <div id="mainContent" style="margin-left:200px;margin-top:61px">
+        {% block body %}
+        {% endblock %}
+      </div>
+
+<!-- JavaScript and JQuery -->
+<div>
+<script type="text/javascript">
+          var allClicked = true;
+          var actionClicked = false;
+          var adventureClicked = false;
+          var comedyClicked = false;
+          var crimeClicked = false;
+          var documentaryClicked = false;
+          var dramaClicked = false;
+          var familyClicked = false;
+          var fantasyClicked = false;
+          var horrorClicked = false;
+          var misteryClicked = false;
+          var romanceClicked = false;
+          var thrillerClicked = false;
 
         // Hide the Sidebar if the screen size is less than 480
         $(window).load(function(){
           if($(window).width() <= 480){
-            $('#sideNavBar').css({'padding-top':'61px'});
+            $('#sideNavBar').css({'margin-top':'111px'});
             $('#sideNavBar').hide();
             $('#mainContent').css({'margin-left':'0px'});
+          }
+
+          if(allClicked === true){
+            allClicked = false;
+            $('#all').css({'background-color':'#01579b','color':'#fff'});
+          }
+          else{
+            allClicked = true;
+            $('#all').css({'background-color':'#03a9f4','color':'#000'});
           }
         });
 
@@ -123,11 +152,403 @@
               }
           }
         });
-      </script>
 
-      <div id="mainContent" style="margin-left:200px">
-        {% block body %}
-        {% endblock %}
+        $('#all').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});  //Darkblue on hover
+          },
+          function(){ //outhover
+            if(allClicked){
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+            else{
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //DarkBlue on out of hover and selected
+            }
+        })
+
+        $('#action').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(actionClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#adventure').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(adventureClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#comedy').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(comedyClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#crime').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(crimeClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#documentary').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(documentaryClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#drama').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(dramaClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })        
+
+        $('#family').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(familyClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#fantasy').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(fantasyClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#horror').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(horrorClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#mistery').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(misteryClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#romance').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(romanceClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#thriller').hover(
+          function(){ //inhover
+            $(this).css({'background-color':'#022e54','color':'#fff'});   //DarkBlue  on hover
+          },
+          function(){ //outhover
+            if(thrillerClicked){
+              $(this).css({'background-color':'#004c8c','color':'#fff'});  //Darkblue on out of hover and selected
+            }
+            else{
+              $(this).css({'background-color':'#03a9f4','color':'#000'});  //LightBlue on out of hover and not selected
+            }
+        })
+
+        $('#all').on('click',function(){
+          if(allClicked){
+            allClicked = false;
+          }
+          else{
+            allClicked = true;
+          }
+        });
+
+        $('#action').on('click',function(){
+          if(actionClicked){
+            actionClicked = false;
+          }
+          else{
+            actionClicked = true;
+          }
+        });
+
+        $('#adventure').on('click',function(){
+          if(adventureClicked){
+            adventureClicked = false;
+          }
+          else{
+            adventureClicked = true;
+          }
+        });
+
+        $('#comedy').on('click',function(){
+          if(comedyClicked){
+            comedyClicked = false;
+          }
+          else{
+            comedyClicked = true;
+          }
+        });
+
+        $('#crime').on('click',function(){
+          if(crimeClicked){
+            crimeClicked = false;
+          }
+          else{
+            crimeClicked = true;
+          }
+        });
+
+        $('#documentary').on('click',function(){
+          if(documentaryClicked){
+            documentaryClicked = false;
+          }
+          else{
+            documentaryClicked = true;
+          }
+        });
+
+        $('#drama').on('click',function(){
+          if(dramaClicked){
+            dramaClicked = false;
+          }
+          else{
+            dramaClicked = true;
+          }
+        });
+
+        $('#family').on('click',function(){
+          if(familyClicked){
+            familyClicked = false;
+          }
+          else{
+            familyClicked = true;
+          }
+        });
+
+        $('#fantasy').on('click',function(){
+          if(fantasyClicked){
+            fantasyClicked = false;
+          }
+          else{
+            fantasyClicked = true;
+          }
+        });
+
+        $('#horror').on('click',function(){
+          if(horrorClicked){
+            horrorClicked = false;
+          }
+          else{
+            horrorClicked = true;
+          }
+        });
+
+        $('#mistery').on('click',function(){
+          if(misteryClicked){
+            misteryClicked = false;
+          }
+          else{
+            misteryClicked = true;
+          }
+        });
+
+        $('#romance').on('click',function(){
+          if(romanceClicked){
+            romanceClicked = false;
+          }
+          else{
+            romanceClicked = true;
+          }
+        });
+
+        $('#thriller').on('click',function(){
+          if(thrillerClicked){
+            thrillerClicked = false;
+          }
+          else{
+            thrillerClicked = true;
+          }
+        });
+
+      </script>
+</div>
+
+<!-- Header navigation CSS-->
+      <div>
+        <style type="text/css">
+body{
+  background-color: #bbdefb;
+}
+
+#menuButton{
+  width: 60px;
+  height: 60px;
+  margin: 0 15px 0 0;
+  cursor:pointer;
+  display: inline-block;
+  border-radius: 100%;
+}
+
+#menuButton:hover{
+  background-color: #004ba0;
+}
+
+#menuButton img{
+  margin: 18px;
+}
+
+.navbar{
+  background: #1976d2;
+  border-radius: 0;
+  color: white;
+}
+
+.navbar-header .navbar-toggle .icon-bar{
+  background-color: #fff;
+}
+
+.navbar-brand{
+  font-family: "Parisienne",cursive;
+}
+
+.navbar-brand span{
+  color: #fff;
+  font-size: 30px;
+}
+
+#topNavBar .nav ul{
+  background-color: #1976d2;
+}
+
+#topNavBar .dropdown li a{
+  background-color: #1976d2;
+  color: #fff;
+  font-family: "Sedgwick+Ave",serif
+}
+
+#topNavBar .dropdown li a:hover{
+  background: #004c8c;
+  color: #fff;
+}
+        </style>
+
+
+<!-- Sidebar -->
+<style type="text/css">
+  
+  @import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+
+.sidebar{
+  height: 100%;
+  width: 200px;
+  margin-top: 61px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;  
+  background-color: #03a9f4;
+}
+
+.option{
+  text-align: center;
+  color: #1b1b1b;
+  font-size: 20px;
+  padding: 8px;
+  font-family: "Bitter","Merriweather",serif;
+  cursor: pointer;
+}
+
+.option input{
+  display: none;
+}
+
+.optionLabel{
+  text-align: center;
+  color: #1b1b1b;
+  font-size: 20px;
+  font-family: "Bitter","Merriweather",serif;
+  cursor: pointer;
+}
+
+hr{
+  margin: 0px;
+}
+
+</style>
+
       </div>
   </body>
 
