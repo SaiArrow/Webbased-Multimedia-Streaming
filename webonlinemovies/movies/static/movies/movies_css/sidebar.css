@@ -1,43 +1,49 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather');
 @import url('https://fonts.googleapis.com/css?family=Bitter');
 
+.list{
+  padding: 0px;
+  list-style-type: none;
+}
+
+.list li{
+  list-style-type: none;
+}
+
+.list li label{
+  width: 200px;
+  margin: 0px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.list input{
+  display: none;
+}
+
 .sidebar{
-	height: 100%;
-	width: 200px;
-	margin-top: 61px;
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	background-color: #fff;
-	overflow-x: hidden;
-	overflow-y: auto;  
-	background-color: #03a9f4;
+  height: 100%;
+  width: 200px;
+  margin-top: 61px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;  
+  background-color: #03a9f4;
 }
 
 .option{
-	text-align: center;
-	color: #1b1b1b;
-	font-size: 20px;
-	padding: 8px;
-	font-family: "Bitter","Merriweather",serif;
-	cursor: pointer;
-}
-
-.option input{
-	display: none;
+  text-align: center;
+  color: #1b1b1b;
+  font-size: 20px;
+  padding: 8px;
+  font-family: "Bitter","Merriweather",serif;
+  cursor: pointer;
 }
 
 hr{
-	margin: 0px;
-}
-
-.option:hover{
-	color: #ffffff;
-	background-color: #004c8c;
-}
-
-.option:active{
-	background-color: #01579b;
-	color: #ffffff;	
+  margin: 0px;
 }

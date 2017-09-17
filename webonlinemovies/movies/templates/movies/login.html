@@ -1,0 +1,27 @@
+{% extends 'movies/header.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+
+      <div class="container login register" id="loginForm" style="margin-top: 71px">
+        <div align="center">
+          <h1>Login</h1>
+        </div>
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="row form-group">
+            <label class="control-label col-md-offset-1 col-md-2" for='username'>Username</label>
+            <input class="col-md-8 inputType" type="text" control="form-control" name="username" id="username" required="true">
+          </div>
+          <div class="row form-group">
+            <label class="control-label col-md-offset-1 col-md-2" for='password'>Password</label>
+            <input class="col-md-8 inputType" type="password" control="form-control" name="password" id="password" required="true">
+          </div>
+          <div align="center">
+            <button type="submit" class="btn btn-success submitButton">Submit</button>
+          </div>
+        </form>
+      </div>
+
+{% endblock %}

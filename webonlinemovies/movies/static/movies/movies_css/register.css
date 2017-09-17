@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+
+.authLink{
+	color: #fff;
+	margin: 8px;
+	font-size: 20px;
+	padding: 8px;
+}
+
+.authLink:hover{
+	color: #fff;
+	text-decoration: none;
+	background-color: #004c8c;
+	border-radius: 5px;
+}
+
+.register{
+	margin-top: 71px;
+	background-color: #fff;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.control-label{
+	font-size: 20px;
+	font-family: 'Merriweather',serif;
+	line-height: 30px;
+}
+
+.inputType{
+	line-height: 30px;
+	font-size: 20px;
+	font-family: 'Merriweather',serif;
+	border-radius: 5px;
+	border-color: #000;
+}
+
+.submitButton{
+	width: 150px;
+	font-family: 'Merriweather',serif;
+	font-size: 15px;
+}
