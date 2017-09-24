@@ -29,7 +29,6 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #fff;
   overflow-x: hidden;
   overflow-y: auto;  
   background-color: #03a9f4;
@@ -42,6 +41,11 @@
   padding: 8px;
   font-family: "Bitter","Merriweather",serif;
   cursor: pointer;
+}
+
+.option:hover{
+  background-color:#004c8c;
+  color:#fff;
 }
 
 hr{

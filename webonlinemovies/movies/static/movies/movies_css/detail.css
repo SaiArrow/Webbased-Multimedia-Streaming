@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+
+.playingClass{
+	padding: 10px;
+	background-color: #fff;
+}
+
+.videoPlayer{
+	padding: 0px;
+}
+
+.detailClass{
+	padding: 0px;
+	margin: 0px;
+}
+
+.imageContainer{
+	margin: 0px;
+}
+
+.imageClass{
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	max-height: 270px;
+}
+
+h3,h4{
+	margin: 8px;
+	font-family: "Merriweather",serif;
+	font-weight: bold;
+	color: #000;
+	text-decoration: underline;
+}
+
+.votes{
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 8px;
+	cursor: pointer;
+}

@@ -8,94 +8,111 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" type="text/css" href="C:\Users\Hanumaan\Desktop\WebProject\Webbased-Multimedia-Streaming\webonlinemovies\movies\static\movies\movies_css\singleMovieCard.css">
   </head>
   
   <body>
-    <!-- <div class="container card-row row">
-        <div class="col-md-3">
-            <div class="card_image row-md">
-                <img class="img-responsive" src="https://cover.djpunjab.com/38823/300x700/Ae-Dil-Hai-Mushkil-Arijit-Singh.jpg" alt="Song Image">
+    <div class="col-md-1"></div>
+    <div class="movieCard container-fluid col-md-3">
+        <div class="col-md-12 movieCardDetails">
+            <div class="imageContainer">
+                <img class="movieImage" src="https://s-media-cache-ak0.pinimg.com/originals/f2/73/18/f273186ebd6cf32a8c8cd9ccc796679e.jpg" alt="movieImage">
             </div>
-            <div class="card_content row-md">
-                <div class="description">
-                    <h3>Ae Dil Hai Mushkil</h3>
-                    <h4>Production</h4>
-                    <div class="extra">
-                        <span>View Numberviews</span>
-                        <span><img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">Like</span>
-                        <span><img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">Dislike</span>
+            <div class="descriptionContainer">
+                <h3>Movie Name</h3>
+                <h4>Production</h4>
+                <div class="col-sm-12 col-md-12" style="padding: 0px;">
+                    <div class="col-sm-4 col-md-4 votesContainer">
+                        <span>12345678views</span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 votesContainer">
+                        <img class="col-sm-3 col-md-3 votesImage" src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="likes">
+                        <span>123456</span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 votesContainer">
+                        <img class="col-sm-3 col-md-3 votesImage" src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="dislike">
+                        <span>123456</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
-    <div class="card">
-        <div class="card_image">
-            <img src="https://teaser-trailer.com/wp-content/uploads/Annabelle-2-Creation-new-Poster.jpg" alt="MovieImage">
-        </div>
-        <div class="card_content">
-            <div class="description">
-                <h3>Ae Dil Hai Mushkil</h3>
+    <div class="movieCard col-md-3">
+        <div class="col-md-12 movieCardDetails">
+            <div class="imageContainer">
+                <img class="movieImage" src="https://i.ytimg.com/vi/OGKzyC4KLFg/maxresdefault.jpg" alt="movieImage">
+            </div>
+            <div class="descriptionContainer">
+                <h3>Movie Name</h3>
                 <h4>Production</h4>
-                <div class="extra">
-                    <span>145152688views</span>
-                    <span>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
-                        10526586
-                    </span>
-                    <span>
-                        <img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
-                        10526586
-                    </span>
+                <div class="col-md-12" style="padding: 0px;">
+                    <div class="col-md-4 votesContainer">
+                        <span>12345678views</span>
+                    </div>
+                    <div class="col-md-4 votesContainer">
+                        <img class="col-md-3 votesImage" src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="likes">
+                        <span>123456</span>
+                    </div>
+                    <div class="col-md-4 votesContainer">
+                        <img class="col-md-3 votesImage" src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="dislike">
+                        <span>123456</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card_image">
-            <img src="https://i.ytimg.com/vi/Q6sd7PPPgYY/maxresdefault.jpg" alt="MovieImage">
-        </div>
-        <div class="card_content">
-            <div class="description">
-                <h3>Ae Dil Hai Mushkil</h3>
+    <div class="movieCard col-md-3">
+        <div class="col-md-12 movieCardDetails">
+            <div class="imageContainer">
+                <img class="movieImage" src="https://teaser-trailer.com/wp-content/uploads/Annabelle-2-Creation-new-Poster.jpg" alt="movieImage">
+            </div>
+            <div class="descriptionContainer">
+                <h3>Movie Name</h3>
                 <h4>Production</h4>
-                <div class="extra">
-                    <span>10526586views</span>
-                    <span>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
-                        10526586
-                    </span>
-                    <span>
-                        <img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
-                        10526586
-                    </span>
+                <div class="col-md-12" style="padding: 0px;">
+                    <div class="col-md-4 votesContainer">
+                        <span>12345678views</span>
+                    </div>
+                    <div class="col-md-4 votesContainer">
+                        <img class="col-md-3 votesImage" src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="likes">
+                        <span>123456</span>
+                    </div>
+                    <div class="col-md-4 votesContainer">
+                        <img class="col-md-3 votesImage" src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="dislike">
+                        <span>123456</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card_image">
-            <img src="https://i.ytimg.com/vi/Q6sd7PPPgYY/maxresdefault.jpg" alt="MovieImage">
-        </div>
-        <div class="card_content">
-            <div class="description">
-                <h3>Ae Dil Hai Mushkil</h3>
+    <div class="movieCard col-md-3">
+        <div class="col-md-12 movieCardDetails">
+            <div class="imageContainer">
+                <img class="movieImage" src="https://askopinion.com/images/Files/UserFiles/posting/lrg/2017/2/mighty-prabhas-in-this-new-bahubali--hzb.jpg" alt="movieImage">
+            </div>
+            <div class="descriptionContainer">
+                <h3>Movie Name</h3>
                 <h4>Production</h4>
-                <div class="extra">
-                    <span>10526586views</span>
-                    <span>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
-                        10526586
-                    </span>
-                    <span>
-                        <img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
-                        10526586
-                    </span>
+                <div class="col-md-12" style="padding: 0px;">
+                    <div class="col-md-4 votesContainer">
+                        <span>12345678views</span>
+                    </div>
+                    <div class="col-md-4 votesContainer">
+                        <img class="col-md-3 votesImage" src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="likes">
+                        <span>123456</span>
+                    </div>
+                    <div class="col-md-4 votesContainer">
+                        <img class="col-md-3 votesImage" src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="dislike">
+                        <span>123456</span>
+                    </div>
                 </div>
             </div>
         </div>

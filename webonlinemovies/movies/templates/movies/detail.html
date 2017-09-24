@@ -2,11 +2,94 @@
 
 {% block title %}Watch Movie{% endblock %}
 
+{% block styleSheets %}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/detail.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/index.css' %}">
+{% endblock %}
+
 {% block body %}
 
 {%if movie %}
-	<div class="embed-responsive embed-responsive-16by9" style="margin-top: 70px">
-		<iframe class="container"  src="{{ movie.movieURL }}" frameborder="0" allowfullscreen></iframe>
+	<div class="row playingClass">
+		<div class="col-md-8 videoPlayer">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="container"  src="{{ movie.movieURL }}" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="col-md-4 detailClass">
+			<div class="col-md-12 imageContainer">
+				<img class="imageClass" src="{{movie.imageURL}}" alt="movieImage">
+			</div>
+			<div class="col-md-12" align="center">
+				<h3>{{movie.movieName}}</h3>
+				<h3>{{movie.production}}</h3>
+				<h4>{{movie.views}} views</h4>
+				<div class="col-md-offset-4 col-md-2">
+					<img class="votes" src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
+                    {{movie.likes}}
+				</div>
+				<div class="col-md-2">
+					<img class="votes" src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
+                    {{movie.dislikes}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div style="margin-top: 20px;" align="center">
+		{% for movie in movies %}
+        	<a class="card-link" href="{% url 'movies:detail' movie.id%}">
+        		<div class="card">
+            		<div class="card_image">
+              			<img src="{{movie.imageURL}}" alt="MovieImage">
+            		</div>
+            		<div class="card_content row-md-6">
+              			<div class="description">
+                			<h3>{{movie.movieName}}</h3>
+                			<h4>{{movie.production}}</h4>
+                			<div class="extra">
+                    			<span>{{movie.views}}views</span>
+                    			<span>
+                        			<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
+                        			{{movie.likes}}
+                    			</span>
+                    			<span>
+                        			<img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
+                        			{{movie.dislikes}}
+                    			</span>
+                			</div>
+              			</div>
+            		</div>
+          		</div>          
+		    </a>
+      	{% endfor%}
+
+      	{% if movies.has_other_pages %}
+    		<div align="center">
+      			<ul class="pagination">
+        			{% if movies.has_previous %}
+          				<li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
+        			{% else %}
+          				<li class="disabled"><span>&laquo;</span></li>
+        			{% endif %}
+      
+        			{% for i in movies.paginator.page_range %}
+          				{% if movies.number == i %}
+            				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          				{% else %}
+            				<li><a href="?page={{ i }}">{{ i }}</a></li>
+          				{% endif %}
+        			{% endfor %}
+    
+        			{% if movies.has_next %}
+          				<li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
+        			{% else %}
+          				<li class="disabled"><span>&raquo;</span></li>
+        			{% endif %}
+      			</ul>
+    		</div>
+    	{% endif %}
 	</div>
 {%else%}
 	<p>No movies present</p>

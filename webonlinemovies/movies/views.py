@@ -12,51 +12,84 @@ import sys
 
 # # Create your views here.
 def index(request):
-	if request.user.is_authenticated:
-		movieList = []
-		try:
-			choiceList = request.GET.getlist('choice')
-			print(choiceList)
-			if len(choiceList) == 0 or 'all' in choiceList:
-				print(len(choiceList))
-				movieList = Movie.objects.all()
-			else:
-				print(len(choiceList))
-				for choice in choiceList:
-					try:
-						print(choice)
-						movieList = movieList | Movie.objects.filter(genre__icontains = choice)
-					except:
-						movieList = Movie.objects.filter(genre__icontains = choice)
-		except:
-			movieList = Movie.objects.all()
-	
-		paginator = Paginator(movieList,12)
-		page = request.GET.get('page')
-		try:
-			movies = paginator.page(page)
-		except PageNotAnInteger:
-			# If page not an integer deliver first page
-			movies = paginator.page(1)
-		except EmptyPage:
-			# If page is out of range deliver last page
-			movies = paginator.page(paginator.num_pages)
-		return render(request,'movies/index.html',{'movies':movies})
-	else:
+	if not request.user.is_authenticated:
 		return redirect('movies:login')
+	
+	movieList = []
+	try:
+		choiceList = request.GET.getlist('choice')
+		print(choiceList)
+		if len(choiceList) == 0 or 'all' in choiceList:
+			print(len(choiceList))
+			choiceList = ['all']
+			movieList = Movie.objects.all()
+		else:
+			print(len(choiceList))
+			for choice in choiceList:
+				try:
+					print(choice)
+					movieList = movieList | Movie.objects.filter(genre__icontains = choice)
+				except:
+					movieList = Movie.objects.filter(genre__icontains = choice)
+	except:
+		movieList = Movie.objects.all()
+	
+	paginator = Paginator(movieList,12)
+	page = request.GET.get('page')
+	try:
+		movies = paginator.page(page)
+	except PageNotAnInteger:
+		# If page not an integer deliver first page
+		movies = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range deliver last page
+		movies = paginator.page(paginator.num_pages)
+	return render(request,'movies/index.html',{'movies':movies,'choiceList':choiceList})
 
 def results(request):
 	query = request.GET.get('search')
-	resultList = Movie.objects.filter(movieName__icontains = query) | Movie.objects.filter(production__icontains = query)
-	return render(request,'movies/index.html',{'movies':resultList,'pageNo':1})
-
-class DetailView(generic.DetailView):
-	model = Movie
-	template_name = 'movies/detail.html'
+	movieList = Movie.objects.filter(movieName__icontains = query) | Movie.objects.filter(production__icontains = query)
+	paginator = Paginator(movieList,12)
+	page = request.GET.get('page')
+	try:
+		movies = paginator.page(page)
+	except PageNotAnInteger:
+		# If page not an integer deliver first page
+		movies = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range deliver last page
+		movies = paginator.page(paginator.num_pages)
+	return render(request,'movies/index.html',{'movies':movies})
 
 def detail(request,pk):
+	if not request.user.is_authenticated:
+		return redirect('movies:login')	
+
 	movie = Movie.objects.get(pk = pk)
-	return render(request,'movies/detail.html',{'movie':movie})
+	genre = movie.genre
+	genreList = genre.split(';')
+	movieList = []
+	print(genreList)
+	for genre in genreList:
+		try:
+			movieList = movieList | Movie.objects.filter(genre__icontains = genre)
+		except:
+			movieList = Movie.objects.filter(genre__icontains = genre)
+	
+	movieList = movieList.exclude(pk = movie.pk)
+
+	paginator = Paginator(movieList,8)
+	page = request.GET.get('page')
+	try:
+		movies = paginator.page(page)
+	except PageNotAnInteger:
+		# If page not an integer deliver first page
+		movies = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range deliver last page
+		movies = paginator.page(paginator.num_pages)
+
+	return render(request,'movies/detail.html',{'movie':movie,'movies':movies})
 
 class LoginFormView(View):
 	template_name = 'movies/login.html'
