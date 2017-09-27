@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather');
 @import url('https://fonts.googleapis.com/css?family=Bitter');
 
+body{
+	background-color: #bbdefb;
+}
+
 .playingClass{
 	padding: 10px;
-	background-color: #fff;
+	background-color: #bbdefb;
 }
 
 .videoPlayer{

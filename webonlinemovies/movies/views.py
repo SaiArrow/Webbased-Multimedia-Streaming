@@ -59,13 +59,15 @@ def results(request):
 	except EmptyPage:
 		# If page is out of range deliver last page
 		movies = paginator.page(paginator.num_pages)
-	return render(request,'movies/index.html',{'movies':movies})
+	return render(request,'movies/index.html',{'movies':movies,'search':query})
 
 def detail(request,pk):
 	if not request.user.is_authenticated:
 		return redirect('movies:login')	
 
 	movie = Movie.objects.get(pk = pk)
+	movie.views += 1
+	movie.save() 
 	genre = movie.genre
 	genreList = genre.split(';')
 	movieList = []
@@ -77,19 +79,9 @@ def detail(request,pk):
 			movieList = Movie.objects.filter(genre__icontains = genre)
 	
 	movieList = movieList.exclude(pk = movie.pk)
+	movieList = movieList[:8]
 
-	paginator = Paginator(movieList,8)
-	page = request.GET.get('page')
-	try:
-		movies = paginator.page(page)
-	except PageNotAnInteger:
-		# If page not an integer deliver first page
-		movies = paginator.page(1)
-	except EmptyPage:
-		# If page is out of range deliver last page
-		movies = paginator.page(paginator.num_pages)
-
-	return render(request,'movies/detail.html',{'movie':movie,'movies':movies})
+	return render(request,'movies/detail.html',{'movie':movie,'movies':movieList})
 
 class LoginFormView(View):
 	template_name = 'movies/login.html'

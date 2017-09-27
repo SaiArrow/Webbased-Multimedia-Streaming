@@ -51,3 +51,7 @@
 hr{
   margin: 0px;
 }
+
+#filterButton{
+  width: 200px;
+}

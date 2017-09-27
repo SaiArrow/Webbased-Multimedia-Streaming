@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYoo  Pp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     {% load staticfiles %}
@@ -52,7 +52,11 @@
             
               <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'movies:results' %}">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search" value="" required="true">
+                    {% if search %}
+                      <input type="text" class="form-control" placeholder="Search" name="search" value="{{search}}" required="true">
+                    {% else %}
+                      <input type="text" class="form-control" placeholder="Search" name="search" value="" required="true">
+                    {% endif %}
                 </div>
                 <button type="submit" class="btn btn-success">Search</button>
               </form>
@@ -71,7 +75,7 @@
       <div class="sidebar" id="sideNavBar">
         <div></div><hr/>
       <form action="{% url 'movies:index' %}" method="get">
-        <button type="submit">GO</button><hr/>
+        <button type="submit" class="btn btn-success" id="filterButton">Filter By</button><hr/>
         <ul class="list">
           
           <li>
@@ -213,7 +217,7 @@
         {% block body %}
         {% endblock %}
       </div>
-      
+
   <!-- JavaScript and JQuery -->
   <div>
     <script type="text/javascript">
@@ -525,7 +529,7 @@
           }
           else{
             $('#actionCheckbox').attr('checked',true)
-            $('#adventure').css({'background-color':'#022e54','color':'#fff'})
+            $('#action').css({'background-color':'#022e54','color':'#fff'})
           }
         })
 

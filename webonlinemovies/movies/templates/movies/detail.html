@@ -4,8 +4,13 @@
 
 {% block styleSheets %}
 	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/detail.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/index.css' %}">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/detail.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/index.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'movies/movies_css/sidebar.css' %}">
+  <script type="text/javascript" src="{% static 'movies/JavaScript/sidebar.js' %}"></script>
 {% endblock %}
 
 {% block body %}
@@ -38,61 +43,40 @@
 	</div>
 
 	<div style="margin-top: 20px;" align="center">
-		{% for movie in movies %}
-        	<a class="card-link" href="{% url 'movies:detail' movie.id%}">
-        		<div class="card">
-            		<div class="card_image">
-              			<img src="{{movie.imageURL}}" alt="MovieImage">
-            		</div>
-            		<div class="card_content row-md-6">
-              			<div class="description">
-                			<h3>{{movie.movieName}}</h3>
-                			<h4>{{movie.production}}</h4>
-                			<div class="extra">
-                    			<span>{{movie.views}}views</span>
-                    			<span>
-                        			<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
-                        			{{movie.likes}}
-                    			</span>
-                    			<span>
-                        			<img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
-                        			{{movie.dislikes}}
-                    			</span>
-                			</div>
-              			</div>
-            		</div>
-          		</div>          
-		    </a>
-      	{% endfor%}
+    <div class="container">
+      {% for movie in movies %}
+        <div class="item {% if forloop.first %} active {% endif %}" style="display: inline-block;">
+        <a class="card-link" href="{% url 'movies:detail' movie.id%}">
+          <div class="card">
+              <div class="card_image">
+                  <img src="{{movie.imageURL}}" alt="MovieImage">
+              </div>
+              <div class="card_content row-md-6">
+                  <div class="description">
+                    <h3>{{movie.movieName}}</h3>
+                    <h4>{{movie.production}}</h4>
+                    <div class="extra">
+                        <span>{{movie.views}}views</span>
+                        <span>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Facebook_like_thumb.png" alt="Like">
+                            {{movie.likes}}
+                        </span>
+                        <span>
+                            <img src="http://applemagazine.com/wp-content/uploads/2014/12/facebook-dislike.png" alt="Dislike">
+                            {{movie.dislikes}}
+                        </span>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </a>
+       </div>
+      {% endfor %}
+    </div>
+	</div> 
 
-      	{% if movies.has_other_pages %}
-    		<div align="center">
-      			<ul class="pagination">
-        			{% if movies.has_previous %}
-          				<li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
-        			{% else %}
-          				<li class="disabled"><span>&laquo;</span></li>
-        			{% endif %}
-      
-        			{% for i in movies.paginator.page_range %}
-          				{% if movies.number == i %}
-            				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-          				{% else %}
-            				<li><a href="?page={{ i }}">{{ i }}</a></li>
-          				{% endif %}
-        			{% endfor %}
-    
-        			{% if movies.has_next %}
-          				<li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
-        			{% else %}
-          				<li class="disabled"><span>&raquo;</span></li>
-        			{% endif %}
-      			</ul>
-    		</div>
-    	{% endif %}
-	</div>
-{%else%}
-	<p>No movies present</p>
-{%endif%}
+  {%else%}
+	 <p>No movies present</p>
+  {%endif%}
 
 {% endblock %}
